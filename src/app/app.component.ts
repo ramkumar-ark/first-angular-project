@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { User, UserComponent } from './user/user.component';
@@ -14,6 +14,7 @@ import { TasksComponent } from './tasks/tasks.component';
 export class AppComponent {
   users = signal(DUMMY_USERS);
   selectedUser = signal<User | null>(null);
+  userName = computed(() => this.selectedUser()?.name || '');
 
   onSelectUser(userId: string) {
     this.selectedUser.set(
