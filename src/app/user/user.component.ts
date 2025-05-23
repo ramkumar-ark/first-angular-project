@@ -1,5 +1,11 @@
 import { Component, computed, input, output } from '@angular/core';
 
+export type User = {
+  id: string;
+  name: string;
+  avatar: string;
+};
+
 @Component({
   selector: 'app-user',
   imports: [],
@@ -7,15 +13,13 @@ import { Component, computed, input, output } from '@angular/core';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  userId = input.required<string>();
-  userName = input.required<string>();
-  userAvatar = input.required<string>();
+  user = input.required<User>();
 
   userSelected = output<string>();
 
-  imagePath = computed(() => `assets/users/${this.userAvatar()}`);
+  imagePath = computed(() => `assets/users/${this.user().avatar}`);
 
   onSelectUser() {
-    this.userSelected.emit(this.userId());
+    this.userSelected.emit(this.user().id);
   }
 }

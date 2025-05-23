@@ -2,52 +2,22 @@
 <main>
   <ul id="users">
     <li>
-      <app-user
-        [userId]="users()[0].id"
-        [userName]="users()[0].name"
-        [userAvatar]="users()[0].avatar"
-        (userSelected)="onSelectUser($event)"
-      />
+      <app-user [user]="users()[0]" (userSelected)="onSelectUser($event)" />
     </li>
     <li>
-      <app-user
-        [userId]="users()[1].id"
-        [userName]="users()[1].name"
-        [userAvatar]="users()[1].avatar"
-        (userSelected)="onSelectUser($event)"
-      />
+      <app-user [user]="users()[1]" (userSelected)="onSelectUser($event)" />
     </li>
     <li>
-      <app-user
-        [userId]="users()[2].id"
-        [userName]="users()[2].name"
-        [userAvatar]="users()[2].avatar"
-        (userSelected)="onSelectUser($event)"
-      />
+      <app-user [user]="users()[2]" (userSelected)="onSelectUser($event)" />
     </li>
     <li>
-      <app-user
-        [userId]="users()[3].id"
-        [userName]="users()[3].name"
-        [userAvatar]="users()[3].avatar"
-        (userSelected)="onSelectUser($event)"
-      />
+      <app-user [user]="users()[3]" (userSelected)="onSelectUser($event)" />
     </li>
     <li>
-      <app-user
-        [userId]="users()[4].id"
-        [userName]="users()[4].name"
-        [userAvatar]="users()[4].avatar"
-        (userSelected)="onSelectUser($event)"
-      />
+      <app-user [user]="users()[4]" (userSelected)="onSelectUser($event)" />
     </li>
     <li>
-      <app-user
-        [userId]="users()[5].id"
-        [userName]="users()[5].name"
-        [userAvatar]="users()[5].avatar"
-        (userSelected)="onSelectUser($event)"
-      />
+      <app-user [user]="users()[5]" (userSelected)="onSelectUser($event)" />
     </li>
   </ul>
   <app-tasks [userName]="selectedUser()?.name || ''" />
