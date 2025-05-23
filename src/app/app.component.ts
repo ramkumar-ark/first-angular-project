@@ -12,4 +12,8 @@ import { DUMMY_USERS } from './dummy-users';
 })
 export class AppComponent {
   users = signal(DUMMY_USERS);
+
+  onSelectUser(userId: string) {
+    console.log('user selected ' + userId);
+  }
 }

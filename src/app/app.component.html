@@ -1,24 +1,53 @@
-<app-header/>
+<app-header />
 <main>
   <ul id="users">
     <li>
-      <app-user [userName]="users()[0].name" [userAvatar]="users()[0].avatar"/>
+      <app-user
+        [userId]="users()[0].id"
+        [userName]="users()[0].name"
+        [userAvatar]="users()[0].avatar"
+        (userSelected)="onSelectUser($event)"
+      />
     </li>
     <li>
-      <app-user [userName]="users()[1].name" [userAvatar]="users()[1].avatar"/>
+      <app-user
+        [userId]="users()[1].id"
+        [userName]="users()[1].name"
+        [userAvatar]="users()[1].avatar"
+        (userSelected)="onSelectUser($event)"
+      />
     </li>
     <li>
-      <app-user [userName]="users()[2].name" [userAvatar]="users()[2].avatar"/>
+      <app-user
+        [userId]="users()[2].id"
+        [userName]="users()[2].name"
+        [userAvatar]="users()[2].avatar"
+        (userSelected)="onSelectUser($event)"
+      />
     </li>
     <li>
-      <app-user [userName]="users()[3].name" [userAvatar]="users()[3].avatar"/>
+      <app-user
+        [userId]="users()[3].id"
+        [userName]="users()[3].name"
+        [userAvatar]="users()[3].avatar"
+        (userSelected)="onSelectUser($event)"
+      />
     </li>
     <li>
-      <app-user [userName]="users()[4].name" [userAvatar]="users()[4].avatar"/>
+      <app-user
+        [userId]="users()[4].id"
+        [userName]="users()[4].name"
+        [userAvatar]="users()[4].avatar"
+        (userSelected)="onSelectUser($event)"
+      />
     </li>
     <li>
-      <app-user [userName]="users()[5].name" [userAvatar]="users()[5].avatar"/>
+      <app-user
+        [userId]="users()[5].id"
+        [userName]="users()[5].name"
+        [userAvatar]="users()[5].avatar"
+        (userSelected)="onSelectUser($event)"
+      />
     </li>
   </ul>
 </main>
-
