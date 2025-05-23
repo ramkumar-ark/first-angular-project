@@ -9,6 +9,7 @@ import { User } from './user.model';
 })
 export class UserComponent {
   user = input.required<User>();
+  isSelected = input.required<boolean>();
 
   userSelected = output<string>();
 
