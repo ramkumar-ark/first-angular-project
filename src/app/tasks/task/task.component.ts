@@ -11,7 +11,7 @@ export class TaskComponent {
   task = input.required<Task>();
   complete = output<string>();
 
-  onCompleted(taskId: string) {
-    this.complete.emit(taskId);
+  onCompleted() {
+    this.complete.emit(this.task().id);
   }
 }
