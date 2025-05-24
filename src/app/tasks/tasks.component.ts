@@ -22,9 +22,6 @@ export class TasksComponent {
     return this.taskService.getUserTasks(this.userId());
   }
 
-  onTaskComplete(taskId: string) {
-    this.taskService.removeTask(taskId);
-  }
   onNewTaskToggle(open: boolean) {
     this.isNewTaskVisible.set(open);
   }
