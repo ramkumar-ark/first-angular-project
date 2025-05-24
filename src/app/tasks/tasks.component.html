@@ -2,7 +2,7 @@
   <header>
     <h2>{{ userName() }}'s Tasks</h2>
     <menu>
-      <button (click)="onNewTask()">Add Task</button>
+      <button (click)="onNewTaskToggle(true)">Add Task</button>
     </menu>
   </header>
   <ul>
@@ -10,4 +10,9 @@
     <li><app-task [task]="task" (complete)="onTaskComplete($event)" /></li>
     }
   </ul>
+  <app-new-task
+    [isVisible]="isNewTaskVisible()"
+    (close)="onNewTaskToggle(false)"
+    (create)="onTaskCreated($event)"
+  />
 </section>

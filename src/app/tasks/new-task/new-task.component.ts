@@ -1,5 +1,6 @@
 import { Component, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NewTask } from './new-task.model';
 
 @Component({
   selector: 'app-new-task',
@@ -10,12 +11,21 @@ import { FormsModule } from '@angular/forms';
 export class NewTaskComponent {
   isVisible = input.required<boolean>();
   close = output<void>();
+  create = output<NewTask>();
   taskTitle = signal('');
   taskSummary = signal('');
   taskDueDate = signal<''>('');
-  onSubmit(formData: any) {
-    // Logic to handle form submission for creating a new task
-    console.log('New task submitted:', formData);
+  onSubmit() {
+    const newTask: NewTask = {
+      title: this.taskTitle(),
+      summary: this.taskSummary(),
+      dueDate: this.taskDueDate(),
+    };
+    this.create.emit(newTask);
+    this.taskTitle.set('');
+    this.taskSummary.set('');
+    this.taskDueDate.set('');
+    this.close.emit();
   }
   onClose() {
     this.close.emit();
