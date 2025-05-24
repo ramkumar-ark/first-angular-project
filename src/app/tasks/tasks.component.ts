@@ -28,12 +28,4 @@ export class TasksComponent {
   onNewTaskToggle(open: boolean) {
     this.isNewTaskVisible.set(open);
   }
-  onTaskCreated(newTask: NewTask) {
-    const task: Task = {
-      id: Math.random().toString(36).substring(2, 15),
-      userId: this.userId(),
-      ...newTask,
-    };
-    this.taskService.addTask(task);
-  }
 }

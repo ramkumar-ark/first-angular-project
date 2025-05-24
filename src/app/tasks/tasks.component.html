@@ -11,8 +11,8 @@
     }
   </ul>
   <app-new-task
+    [userId]="userId()"
     [isVisible]="isNewTaskVisible()"
     (close)="onNewTaskToggle(false)"
-    (create)="onTaskCreated($event)"
   />
 </section>

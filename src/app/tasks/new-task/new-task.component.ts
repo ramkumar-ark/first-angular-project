@@ -1,4 +1,5 @@
-import { Component, input, output, signal } from '@angular/core';
+import { TasksService } from './../tasks.service';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NewTask } from './new-task.model';
 
@@ -9,19 +10,21 @@ import { NewTask } from './new-task.model';
   styleUrl: './new-task.component.css',
 })
 export class NewTaskComponent {
+  userId = input.required<string>();
   isVisible = input.required<boolean>();
   close = output<void>();
-  create = output<NewTask>();
   taskTitle = signal('');
   taskSummary = signal('');
-  taskDueDate = signal<''>('');
+  taskDueDate = signal('');
+  private tasksService = inject(TasksService);
+
   onSubmit() {
     const newTask: NewTask = {
       title: this.taskTitle(),
       summary: this.taskSummary(),
       dueDate: this.taskDueDate(),
     };
-    this.create.emit(newTask);
+    this.tasksService.addTask(newTask, this.userId());
     this.taskTitle.set('');
     this.taskSummary.set('');
     this.taskDueDate.set('');
