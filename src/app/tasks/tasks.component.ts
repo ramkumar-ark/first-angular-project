@@ -1,9 +1,9 @@
 import { Component, input, computed, signal, output } from '@angular/core';
 import { TaskComponent } from './task/task.component';
-import { dummyTasks } from '../dummy-tasks';
 import { Task } from './task/task.model';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { NewTask } from './new-task/new-task.model';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -12,32 +12,28 @@ import { NewTask } from './new-task/new-task.model';
   styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
+  constructor(private taskService: TasksService) {}
+
   userName = input.required<string>();
   userId = input.required<string>();
-  completedTaskIds = signal<string[]>([]);
-  createdTasks = signal<Task[]>([]);
   isNewTaskVisible = signal(false);
 
-  tasks = computed(() =>
-    [...dummyTasks, ...this.createdTasks()].filter(
-      (task) =>
-        task.userId === this.userId() &&
-        !this.completedTaskIds().includes(task.id)
-    )
-  );
+  get tasks() {
+    return this.taskService.getUserTasks(this.userId());
+  }
 
   onTaskComplete(taskId: string) {
-    this.completedTaskIds.update((ids) => [...ids, taskId]);
+    this.taskService.removeTask(taskId);
   }
   onNewTaskToggle(open: boolean) {
     this.isNewTaskVisible.set(open);
   }
   onTaskCreated(newTask: NewTask) {
-    const task = {
+    const task: Task = {
       id: Math.random().toString(36).substring(2, 15),
       userId: this.userId(),
       ...newTask,
     };
-    this.createdTasks.update((tasks) => [...tasks, task]);
+    this.taskService.addTask(task);
   }
 }

@@ -6,7 +6,7 @@
     </menu>
   </header>
   <ul>
-    @for (task of tasks(); track task.id) {
+    @for (task of tasks; track task.id) {
     <li><app-task [task]="task" (complete)="onTaskComplete($event)" /></li>
     }
   </ul>
