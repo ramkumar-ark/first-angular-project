@@ -1,4 +1,4 @@
-import { Component, input, computed, signal } from '@angular/core';
+import { Component, input, computed, signal, output } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { dummyTasks } from '../dummy-tasks';
 
@@ -11,6 +11,7 @@ import { dummyTasks } from '../dummy-tasks';
 export class TasksComponent {
   userName = input.required<string>();
   userId = input.required<string>();
+  newTask = output<void>();
   completedTaskIds = signal<string[]>([]);
   tasks = computed(() =>
     dummyTasks.filter(
@@ -22,5 +23,8 @@ export class TasksComponent {
 
   onTaskComplete(taskId: string) {
     this.completedTaskIds.update((ids) => [...ids, taskId]);
+  }
+  onNewTask() {
+    this.newTask.emit();
   }
 }
